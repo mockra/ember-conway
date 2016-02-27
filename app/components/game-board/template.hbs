@@ -1,0 +1,11 @@
+{{#each board as |row|}}
+  <div class='row'>
+    {{#each row as |cell|}}
+      {{game-cell cell=cell}}
+    {{/each}}
+  </div>
+{{/each}}
+
+<p>
+  <a href="" {{action 'update'}}>Update</a>
+</p>
