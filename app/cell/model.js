@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-const { set, get, computed } = Ember;
+const { set, get, computed, run } = Ember;
 const { alias, filter, filterBy } = computed;
 
 export default DS.Model.extend({
@@ -49,6 +49,9 @@ export default DS.Model.extend({
   },
 
   update() {
-    set(this, 'alive', get(this, 'nextState'));
+    const nextState = get(this, 'nextState');
+    run.schedule('sync', this, function() {
+      set(this, 'alive', nextState);
+    });
   }
 });
